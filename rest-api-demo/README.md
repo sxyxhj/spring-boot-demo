@@ -1,7 +1,16 @@
 # spring-boot-rest-demo
 
-1. 创建一个rest服务
-2. 并添加swagger
+## 创建一个rest服务
+## 并添加swagger
+
+添加POM依赖
+
+配置swagger页面 
+配置类：
+org.sxyxhj.restapidemo.swagger.SwaggerConfig
+
+Swagger访问地址：
+http://localhost:8080/swagger-ui.html
 
 
 ## 遇到的问题：
