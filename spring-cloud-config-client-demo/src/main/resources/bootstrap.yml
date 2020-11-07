@@ -1,0 +1,18 @@
+
+# bootstrap.yml文件要先读取应用属性，
+# 一般来说bootstrap.yml包含服务的应用名称，应用程序的profile和连接到Spring Cloud Config服务的地址
+# 希望保留在本地服务的其他配置信息，都可以在服务中的application.yml文件中进行本地设置
+
+
+spring:
+  application:
+    name: licensingservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+
+encrypt:
+  key: 123456

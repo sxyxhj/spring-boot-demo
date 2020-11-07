@@ -1,0 +1,9 @@
+encrypt:
+  key: 123456
+
+spring:
+  cloud:
+    config:
+      server:
+        encrypt:
+          enabled: false
