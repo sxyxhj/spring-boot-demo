@@ -9,5 +9,9 @@
 Module： rest-api-demo
 
 ## 使用Spring Cloud配置服务器控制配置
-
+### Server端
 Module： spring-cloud-config-demo
+### client端
+Module： spring-cloud-config-client-demo
+
+## 服务发现
