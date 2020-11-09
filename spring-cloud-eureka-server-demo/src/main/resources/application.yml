@@ -1,0 +1,11 @@
+server:
+  port: 8761 #端口
+eureka:
+  client:
+    register-with-eureka: false #是否注册自己的信息到Eureka服务，默认是false
+    fetch-registry: false #是否拉取其他服务的信息，默认是false
+    server:
+      wait-time-in-ms-when-sync-empty: 5
+
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka

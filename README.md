@@ -15,3 +15,7 @@ Module： spring-cloud-config-demo
 Module： spring-cloud-config-client-demo
 
 ## 服务发现
+
+1. 创建Eureka Server
+2. 创建服务提供者
+3. 创建服务消费者
