@@ -3,7 +3,8 @@
 通过代码实例来学习微服务!!!
 
 学习书籍：《Spring微服务实战》
-源码：
+
+书籍源码：https://github.com/carnellj
 
 ## 创建一个rest服务
 
