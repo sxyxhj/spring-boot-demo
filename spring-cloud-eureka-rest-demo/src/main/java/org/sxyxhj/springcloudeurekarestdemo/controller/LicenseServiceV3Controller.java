@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.sxyxhj.springcloudeurekarestdemo.services.FeignService;
 import org.sxyxhj.springcloudeurekarestdemo.vo.Person;
 
-import javax.annotation.Resource;
 
 /**
  * @program: spring-boot-demo

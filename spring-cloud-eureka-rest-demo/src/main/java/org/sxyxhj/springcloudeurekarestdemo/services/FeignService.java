@@ -1,6 +1,7 @@
 package org.sxyxhj.springcloudeurekarestdemo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.sxyxhj.springcloudeurekarestdemo.feign.FeignClientService;
 import org.sxyxhj.springcloudeurekarestdemo.vo.Person;
@@ -15,11 +16,11 @@ import org.sxyxhj.springcloudeurekarestdemo.vo.Person;
 public class FeignService {
 
     @Autowired
-    private FeignClientService client;
+    private FeignClientService feignClientService;
 
     public Person getPerson(String name){
 
-        return client.getPerson(name);
+        return feignClientService.getPerson(name);
 
 
     }

@@ -8,24 +8,25 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
+import org.sxyxhj.springcloudeurekarestdemo.feign.FeignClientService;
 
 @SpringBootApplication
 /**
  * 使用Spring DiscoveryClient
  * @EnableDiscoveryClient
  */
-
+@EnableDiscoveryClient
 
 //使用Netflix feign
 
-@EnableFeignClients(basePackages = {"org.sxyxhj"})
+@EnableFeignClients(clients = FeignClientService.class)
+@ComponentScan(basePackages = "org.sxyxhj")
 
-@ComponentScan(basePackages = {"org.sxyxhj"})
 public class SpringCloudEurekaRestDemoApplication {
 
 
     // @LoadBalanced 显示标注， 使用Ribbon 和 RestTemplate。
-    @LoadBalanced
+   @LoadBalanced
     @Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();

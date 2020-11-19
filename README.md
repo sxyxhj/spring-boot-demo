@@ -6,18 +6,28 @@
 
 书籍源码：https://github.com/carnellj
 
-## 创建一个rest服务
+
+## 构建微服务 Spring boot 
 
 Module： rest-api-demo
 
-## 使用Spring Cloud配置服务器控制配置
+## 配置管理 Spring Cloud config 
+
 ### Server端
 Module： spring-cloud-config-demo
 ### client端
 Module： spring-cloud-config-client-demo
 
-## 服务发现
+## 服务发现 Spring Cloud Eureka
 
 1. 创建Eureka Server
 2. 创建服务提供者
 3. 创建服务消费者
+
+
+## 客户端的弹性机制 Spring Cloud 和 Netflix Hystrix
+## 服务路由 Spring cloud 和Zuul
+## 微服务安全
+## Spring Cloud Stream事件驱动机制
+## 使用Spring Cloud Sleuth和Zipkin进行分布式追踪
+## 部署微服务
