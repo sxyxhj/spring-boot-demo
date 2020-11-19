@@ -1,5 +1,6 @@
 package org.sxyxhj.springcloudeurekarestdemo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpMethod;
@@ -14,25 +15,22 @@ import java.util.List;
 
 /**
  * @program: spring-boot-demo
- * @description: LicenseServiceController, 演示利用EnableDiscoveryClient 去调用服务
+ * @description: LicenseServiceController, 演示使用带有Ribbon功能的Spring RestTemplate调用服务
  * @author: @sxyxhj
  * @create: 2020-11-15 09:47
  **/
 @RestController
-public class LicenseServiceController {
-    @Resource
-    private DiscoveryClient client;
+public class LicenseServiceV2Controller {
 
-    @GetMapping("/getService")
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @GetMapping("/getServiceV2")
     public ResponseEntity getServices(){
 
-        List<ServiceInstance> list = client.getInstances("provider");
-        //获取地址
-        String url = list.get(0).getUri().toString()+"/person";
-
-        RestTemplate restTemplate = new RestTemplate();
         //使用Spring restTemplate 调用服务
-        ResponseEntity responseEntity = restTemplate.exchange(url, HttpMethod.GET,null, Person.class,"provider");
+        ResponseEntity responseEntity = restTemplate.exchange("http://provider/person", HttpMethod.GET,null, Person.class,"provider");
 
 
         return responseEntity;
