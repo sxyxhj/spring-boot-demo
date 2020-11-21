@@ -10,3 +10,7 @@
 2. 使用带有Ribbon功能的Spring RestTemplate调用服务 (LicenseServiceV2Controller)
 
 3. 使用NetflixFeign客户端 (LicenseServiceV3Controller)
+
+
+问题：
+1. 注意保证所用的Spring Cloud与其他module 保持一致
