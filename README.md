@@ -26,8 +26,19 @@ Module： spring-cloud-config-client-demo
 
 
 ## 客户端的弹性机制 Spring Cloud 和 Netflix Hystrix
+
+
 ## 服务路由 Spring cloud 和Zuul
+
+
 ## 微服务安全
+
+
 ## Spring Cloud Stream事件驱动机制
+
+
 ## 使用Spring Cloud Sleuth和Zipkin进行分布式追踪
+
+
+
 ## 部署微服务

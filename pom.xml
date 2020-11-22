@@ -21,6 +21,10 @@
         <module>rest-api-demo</module>
         <module>spring-cloud-config-demo</module>
         <module>spring-cloud-config-client-demo</module>
+        <module>spring-cloud-eureka-server-demo</module>
+        <module>spring-cloud-eureka-rest-demo</module>
+        <module>spring-cloud-eureka-client-demo</module>
+        <module>spring-cloud-zuul-demo</module>
     </modules>
 
 </project>

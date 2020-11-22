@@ -1,0 +1,64 @@
+
+# 配置Zuul服务器与Eureka通信
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 5555
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: zuul
+
+# 手动映射路由配置
+zuul:
+  routes:
+    test: /test/**
+    # 映射静态路由
+    licensestatic:
+      path: /licensestatic/**
+      #url: http://licenseservice-static:8083
+      #定义一个服务ID，该服务ID用于在Ribbon中查找服务
+      serviceId: licensestatic
+  # 从映射中排除某个服务
+  #ignored-services: 'consumer'
+  # '*' :排除所有基于Eureka的路由
+  #ignored-services: '*'
+  # 使用"/api"之类的标记来为所有的服务调用添加前缀，从而区分API路由与内容路由
+  prefix: /api
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+
+# 在ribbon中禁用Eureka
+ribbon:
+  eureka:
+    enabled: true
+# 指定请求会路由到指定的服务列表
+licensestatic:
+  ribbon:
+    listOfServices: http://localhost:8082
+
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
