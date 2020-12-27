@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,24 +21,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  **/
 @Configuration
 @EnableWebSecurity
+//对全部方法进行验证
+@EnableGlobalMethodSecurity(prePostEnabled = true , securedEnabled = true,jsr250Enabled = true)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    OAuth2Config config;
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
-
-    @Override
-    @Bean
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return super.userDetailsServiceBean();
     }
 
     @Override
@@ -44,13 +38,31 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
         auth.inMemoryAuthentication()
                 .withUser("test")
-                .password(getPasswordEncoder().encode("test"))
+                .password(config.getPasswordEncoder().encode("test"))
                 .roles("USER")
                 .and()
                 .withUser("admin")
-                .password(getPasswordEncoder().encode("admin"))
+                .password(config.getPasswordEncoder().encode("admin"))
                 .roles("USER","ADMIN");
     }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+// 决定那些请求被拦截
+        http
+                .authorizeRequests()
+                .antMatchers("/css/**", "/js/**", "/fonts/**", "/index").permitAll() //都可以访问
+// .antMatchers("").permitAll()// 主路径放行
+                .anyRequest().permitAll()// 其他请求需经过验证
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .permitAll()// 表单登录允许任意权限访问
+                .and()
+                .logout().permitAll();// 注销操作允许任意权限访问
+        http.csrf().disable();// 关闭默认的csrf认证
+    }
+
+
 }
 
     
