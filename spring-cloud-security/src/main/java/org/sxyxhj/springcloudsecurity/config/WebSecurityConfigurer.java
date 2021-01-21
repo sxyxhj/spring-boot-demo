@@ -47,6 +47,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+/*
 // 决定那些请求被拦截
         http
                 .authorizeRequests()
@@ -59,7 +60,30 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .permitAll()// 表单登录允许任意权限访问
                 .and()
                 .logout().permitAll();// 注销操作允许任意权限访问
+*/
+
+        //http.csrf().disable();// 关闭默认的csrf认证
+
+        /*http.authorizeRequests()
+                .antMatchers("/oauth/*").authenticated()
+                .antMatchers("/user")
+                .hasRole("USER")
+                .antMatchers("/admin/**")
+                .hasRole("ADMIN");*/
+
+        http.authorizeRequests()
+                .antMatchers("/user").hasRole("USER").antMatchers("/admin/**")
+                .hasRole("ADMIN")
+                .anyRequest().permitAll()
+        .and()
+        .formLogin()
+        .loginProcessingUrl("/login")
+        .permitAll()
+        .and()
+        .logout().permitAll();
+
         http.csrf().disable();// 关闭默认的csrf认证
+
     }
 
 

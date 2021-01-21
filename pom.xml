@@ -25,6 +25,7 @@
         <module>spring-cloud-eureka-rest-demo</module>
         <module>spring-cloud-eureka-client-demo</module>
         <module>spring-cloud-zuul-demo</module>
+        <module>spring-cloud-stream</module>
     </modules>
 
 </project>
